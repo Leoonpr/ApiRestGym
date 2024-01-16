@@ -1,7 +1,8 @@
 package com.projeto.academia.controllers;
 
+import com.projeto.academia.entities.Aluno;
 import com.projeto.academia.entities.Turma;
-import com.projeto.academia.repositories.TurmaRepository;
+import com.projeto.academia.repositories.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -12,27 +13,27 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="turmas")
-public class TurmaController {
+@RequestMapping(value="alunos")
+public class AlunoController {
     @Autowired
-    private TurmaRepository repository;
+    private AlunoRepository repository;
 
     @GetMapping
-    public List<Turma> findAll() {
+    public List<Aluno> findAll() {
         return repository.findAll();
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Turma> findOne(@PathVariable Long id) {
-        Optional<Turma> turmaOptional = repository.findById(id);
-        return turmaOptional
-                .map(turma -> ResponseEntity.ok().body(turma))
+    public ResponseEntity<Aluno> findOne(@PathVariable Long id) {
+        Optional<Aluno> alunoOptional = repository.findById(id);
+        return alunoOptional
+                .map(aluno -> ResponseEntity.ok().body(aluno))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Turma insert(@RequestBody Turma turma) {
-        return repository.save(turma);
+    public Aluno insert(@RequestBody Aluno aluno) {
+        return repository.save(aluno);
     }
 
     @DeleteMapping("/{id}")
@@ -48,10 +49,10 @@ public class TurmaController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<String> update(@RequestBody Turma turma) {
+    public ResponseEntity<String> update(@RequestBody Aluno aluno) {
         try {
-            if (repository.existsById(turma.getId())) {
-                repository.save(turma);
+            if (repository.existsById(aluno.getId())) {
+                repository.save(aluno);
                 return ResponseEntity.ok("Turma atualizada com sucesso");
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Turma não encontrada");
