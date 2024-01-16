@@ -3,6 +3,8 @@ package com.projeto.academia.controllers;
 import com.projeto.academia.entities.Atividade;
 import com.projeto.academia.repositories.AtividadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +26,11 @@ public class AtividadeController {
     }
 
     @PostMapping
-    public Atividade insert(@RequestBody Atividade atividade) {
-        return repository.save(atividade);
+    public ResponseEntity<Atividade> insert(@RequestBody Atividade atividade) {
+        Atividade novaAtividade = repository.save(atividade);
+        return new ResponseEntity<>(novaAtividade, HttpStatus.CREATED);
     }
+
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
