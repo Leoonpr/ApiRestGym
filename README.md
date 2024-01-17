@@ -27,6 +27,7 @@ git clone git@github.com:Leoonpr/ApiRestGym.git
 
 
 <h2 id="routes">📍 API Endpoints</h2>
+
 ​
 | rotas               | descrição                                          
 |----------------------|-----------------------------------------------------
@@ -35,6 +36,7 @@ git clone git@github.com:Leoonpr/ApiRestGym.git
 | <kbd>POST /atividades</kbd>     | Atualiza informações para uma atividade específica pelo ID
 | <kbd>PUT /atividades</kbd>     | Cria uma nova atividade.
 | <kbd>DELETE /atividades/{id}</kbd>     | Exclui uma atividade específica pelo ID.
+
 
 | rotas               | descrição                                          
 |----------------------|-----------------------------------------------------
