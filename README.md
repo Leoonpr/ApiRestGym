@@ -19,7 +19,7 @@ Como clonar o projeto
 git clone git@github.com:Leoonpr/ApiRestGym.git
 ```
 
-<h3>Pasos</h3>
+<h3>Passos</h3>
 
 - Abra o projeto no seu IDE
 - Configure o Banco de Dados e o application.properties
