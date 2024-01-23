@@ -1,5 +1,6 @@
 package com.projeto.academia.entities;
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name="atividade")
@@ -8,6 +9,14 @@ public class Atividade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+
+    public Atividade() {
+
+    }
+
+    public Atividade(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
@@ -23,5 +32,18 @@ public class Atividade {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Atividade atividade = (Atividade) o;
+        return Objects.equals(id, atividade.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

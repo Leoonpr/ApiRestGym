@@ -1,7 +1,6 @@
 package com.projeto.academia.controllers;
 
 import com.projeto.academia.entities.Aluno;
-import com.projeto.academia.entities.Turma;
 import com.projeto.academia.repositories.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -32,8 +31,9 @@ public class AlunoController {
     }
 
     @PostMapping
-    public Aluno insert(@RequestBody Aluno aluno) {
-        return repository.save(aluno);
+    public ResponseEntity<Aluno> insert(@RequestBody Aluno aluno) {
+        Aluno novoAluno = repository.save(aluno);
+        return new ResponseEntity<>(novoAluno, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

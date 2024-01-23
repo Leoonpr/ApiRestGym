@@ -1,8 +1,11 @@
 package com.projeto.academia.controllers;
 
 import com.projeto.academia.entities.Instrutor;
+import com.projeto.academia.entities.Turma;
 import com.projeto.academia.repositories.InstrutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +27,12 @@ public class InstrutorController {
     }
 
     @PostMapping
-    public Instrutor insert(@RequestBody Instrutor instrutor) {
-        return repository.save(instrutor);
+    public ResponseEntity<Instrutor> insert(@RequestBody Instrutor instrutor) {
+        Instrutor novoInstrutor = repository.save(instrutor);
+        return new ResponseEntity<>(novoInstrutor, HttpStatus.CREATED);
     }
+
+}
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {

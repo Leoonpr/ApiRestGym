@@ -1,5 +1,6 @@
 package com.projeto.academia.controllers;
 
+import com.projeto.academia.entities.Aluno;
 import com.projeto.academia.entities.Turma;
 import com.projeto.academia.repositories.TurmaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,9 @@ public class TurmaController {
     }
 
     @PostMapping
-    public Turma insert(@RequestBody Turma turma) {
-        return repository.save(turma);
+    public ResponseEntity<Turma> insert(@RequestBody Turma turma) {
+        Turma novaTurma = repository.save(turma);
+        return new ResponseEntity<>(novaTurma, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
